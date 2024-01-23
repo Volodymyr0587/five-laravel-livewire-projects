@@ -9,7 +9,7 @@ class Calculator extends Component
     public $number1 = 0;
     public $number2 = 0;
     public string $action = '+';
-    public float $result = 0;
+    public mixed $result = 0;
     public bool $disabled = false;
 
     public function render()
@@ -27,7 +27,12 @@ class Calculator extends Component
         } else if ($this->action == '*') {
             $this->result = $num1 * $num2;
         } else if ($this->action == '/') {
-            $this->result = $num1 / $num2;
+            try {
+                $this->result = $num1 / $num2;
+            } catch (\DivisionByZeroError $e) {
+                $this->result = 'Cannot divide by zero';
+            }
+
         } else if ($this->action == '%') {
             $this->result = $num1 / 100 * $num2;
         }
