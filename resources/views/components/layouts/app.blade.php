@@ -18,6 +18,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @livewireStyles()
+        {{-- <livewire:styles/> --}}
 
     </head>
     <body class="antialiased">
